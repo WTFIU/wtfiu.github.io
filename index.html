@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WTIFU Projects</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .project {
+      background-color: #222;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+    .project:hover {
+      transform: scale(1.05);
+      background-color: #333;
+    }
+    a {
+      color: #66ccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to WTIFU Projects</h1>
+  <p>Explore my creations below 👇</p>
+
+  <div class="projects">
+    <div class="project">
+      <h3>🔧 Fun Time Extension</h3>
+      <p>A Chrome extension that’s playfully annoying.</p>
+      <a href="https://github.com/wtifu/fun-time" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project">
+      <h3>🛡️ Discord Filter Bot</h3>
+      <p>Filters inappropriate words before they're sent.</p>
+      <a href="https://github.com/wtifu/discord-word-filter" target="_blank">View on GitHub</a>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
