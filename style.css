@@ -7,9 +7,19 @@ body {
   background: radial-gradient(circle at top, #0a0a0a, #000);
   color: #fff;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: block;          /* allow scrolling */
+  overflow-x: hidden;      /* prevent horizontal scroll */
+  padding: 2rem;           /* spacing around content */
 }
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.8;
+  color: #ccc;
+}
+
 
 nav {
   display: flex;
