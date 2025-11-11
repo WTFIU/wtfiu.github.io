@@ -135,3 +135,17 @@ footer {
   color: #666;
   font-size: 0.9rem;
 }
+
+.cursor {
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  background: #fff;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out;
+  z-index: 9999;
+}
