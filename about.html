@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="cursor"></div>
   <nav>
     <a href="index.html" class="logo">wtfiu</a>
     <div class="nav-links">
@@ -23,5 +24,16 @@
   </section>
 
   <footer>© 2025 wtfiu</footer>
+
+  <script>
+    // coolest cursor effect x2
+    const cursor = document.querySelector('.cursor');
+    if (cursor) {
+      const rect = cursor.getBoundingClientRect();
+      document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate(${e.clientX + window.scrollX - rect.width / 2}px, ${e.clientY + window.scrollY - rect.height / 2}px)`;
+      });
+    }
+  </script>
 </body>
 </html>
