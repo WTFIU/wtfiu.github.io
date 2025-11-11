@@ -4,168 +4,99 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>wtfiu</title>
+  <link rel="icon" href="https://wtfiu.github.io/favicon.ico">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Rubik', sans-serif;
-      background: radial-gradient(circle at top, #050505, #000);
+      background: radial-gradient(circle at top, #0a0a0a, #000);
       color: #fff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    nav {
-      position: fixed;
-      top: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-      z-index: 1000;
-    }
-
-    .nav-item {
-      position: relative;
-      margin: 0 1rem;
-    }
-
-    .nav-item > a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 1rem;
-    }
-
-    .nav-item > a:hover {
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-    }
-
-    /* Dropdown reveal in center */
-    .dropdown {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70%;
-      max-width: 700px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(0,255,255,0.25);
-      backdrop-filter: blur(8px);
-      animation: fadeIn 0.25s ease;
-    }
-
-    .nav-item:hover .dropdown {
-      display: block;
-    }
-
-    .dropdown h2 {
-      font-size: 2rem;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff0080, #00ffff, #ff0080);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
+      animation: glow 4s linear infinite;
     }
 
-    .dropdown p, .dropdown ul {
-      color: #ddd;
-      font-size: 1rem;
-      line-height: 1.6;
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 4px #ff00ff); }
+      50% { filter: drop-shadow(0 0 15px #00ffff); }
+      100% { filter: drop-shadow(0 0 4px #ff00ff); }
     }
 
-    .dropdown ul {
-      list-style: none;
-      padding: 0;
+    p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-top: 1rem;
     }
 
-    .dropdown li {
-      margin: 0.4rem 0;
+    .links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -45%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
+    .links a {
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid #fff3;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      transition: 0.3s;
     }
 
-    /* Mobile */
-    @media (max-width: 700px) {
-      nav {
-        flex-wrap: wrap;
-        width: 90%;
-      }
-      .dropdown {
-        width: 90%;
-        padding: 1.5rem;
-      }
-      .dropdown h2 {
-        font-size: 1.5rem;
-      }
+    .links a:hover {
+      background: linear-gradient(90deg, #ff0080, #00ffff);
+      border-color: transparent;
+      color: #000;
+    }
+
+    .cursor {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      background: #fff;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease-out;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-item">
-      <a href="#">Home</a>
-      <div class="dropdown">
-        <h2>Welcome</h2>
-        <p>Hey there 👋<br>Welcome to <strong>wtfiu.github.io</strong> — my personal space on the web.<br>
-        Here I experiment with design, code, and creative stuff that breaks the usual.</p>
-      </div>
-    </div>
+  <div class="cursor"></div>
+  <h1>w t f i u</h1>
+  <p>Welcome to the edge of logic.</p>
+  <div class="links">
+    <a href="https://github.com/wtfiu" target="_blank">GitHub</a>
+    <a href="/projects">Projects</a>
+    <a href="/about">About</a>
+  </div>
 
-    <div class="nav-item">
-      <a href="#">About</a>
-      <div class="dropdown">
-        <h2>About Me</h2>
-        <p>I’m a creator who likes building things that make people go “wait… that’s cool.”  
-        From Python bots to browser extensions and mods, I’m always mixing tech with fun ideas.</p>
-      </div>
-    </div>
+  <script>
+    // cool cursor effect
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
 
-    <div class="nav-item">
-      <a href="#">Projects</a>
-      <div class="dropdown">
-        <h2>Projects</h2>
-        <ul>
-          <li>💻 <strong>Fun Time Extension</strong> — a playful Chrome experience</li>
-          <li>🎮 <strong>DemonLegal+</strong> — a Geometry Dash mod</li>
-          <li>🤖 <strong>Shadow Milk Bot</strong> — my custom Discord bot</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <a href="#">Contact</a>
-      <div class="dropdown">
-        <h2>Contact</h2>
-        <p>Find me on GitHub:<br>
-        <a href="https://github.com/wtfiu" target="_blank" style="color:#00ffff;text-decoration:none;">github.com/wtfiu</a></p>
-      </div>
-    </div>
-  </nav>
+    // subtle flicker
+    setInterval(() => {
+      document.body.style.filter = `brightness(${0.95 + Math.random() * 0.1})`;
+    }, 100);
+  </script>
 </body>
 </html>
