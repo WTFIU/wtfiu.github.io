@@ -4,99 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>wtfiu</title>
-  <link rel="icon" href="https://wtfiu.github.io/favicon.ico">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Rubik', sans-serif;
       background: radial-gradient(circle at top, #0a0a0a, #000);
       color: #fff;
       min-height: 100vh;
+    }
+
+    nav {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      overflow: hidden;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    h1 {
-      font-size: 4rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #ff0080, #00ffff, #ff0080);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 4s linear infinite;
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
     }
 
-    @keyframes glow {
-      0% { filter: drop-shadow(0 0 4px #ff00ff); }
-      50% { filter: drop-shadow(0 0 15px #00ffff); }
-      100% { filter: drop-shadow(0 0 4px #ff00ff); }
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #aaa;
-      margin-top: 1rem;
-    }
-
-    .links {
-      margin-top: 2rem;
+    .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
-    .links a {
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
       text-decoration: none;
       color: #fff;
-      border: 1px solid #fff3;
-      padding: 0.7rem 1.5rem;
-      border-radius: 30px;
-      transition: 0.3s;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
-    .links a:hover {
-      background: linear-gradient(90deg, #ff0080, #00ffff);
-      border-color: transparent;
-      color: #000;
+    .nav-item > a:hover {
+      color: #00ffff;
     }
 
-    .cursor {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      background: #fff;
-      mix-blend-mode: difference;
-      transition: transform 0.1s ease-out;
-      z-index: 1000;
+    /* Hover content container */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 2.8rem;
+      left: 0;
+      width: 80vw;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .nav-item:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content h2 {
+      font-size: 1.5rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+
+    .dropdown-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .dropdown-content ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown-content li {
+      margin: 0.4rem 0;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .dropdown-content {
+        width: 90vw;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="cursor"></div>
-  <h1>w t f i u</h1>
-  <p>Welcome to the edge of logic.</p>
-  <div class="links">
-    <a href="https://github.com/wtfiu" target="_blank">GitHub</a>
-    <a href="/projects">Projects</a>
-    <a href="/about">About</a>
-  </div>
+  <nav>
+    <a href="#" class="logo">wtfiu</a>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="#">Home</a>
+        <div class="dropdown-content">
+          <h2>Welcome</h2>
+          <p>Hey there! Welcome to <strong>wtfiu.github.io</strong> — my personal site where I share projects, thoughts, and creative experiments. Explore the tabs above to learn more.</p>
+        </div>
+      </div>
 
-  <script>
-    // cool cursor effect
-    const cursor = document.querySelector('.cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+      <div class="nav-item">
+        <a href="#">About</a>
+        <div class="dropdown-content">
+          <h2>About Me</h2>
+          <p>I’m a builder, coder, and creator of random cool things.  
+          I like to experiment with web design, automation, and games — this site shows a bit of everything.</p>
+        </div>
+      </div>
 
-    // subtle flicker
-    setInterval(() => {
-      document.body.style.filter = `brightness(${0.95 + Math.random() * 0.1})`;
-    }, 100);
-  </script>
+      <div class="nav-item">
+        <a href="#">Projects</a>
+        <div class="dropdown-content">
+          <h2>My Projects</h2>
+          <ul>
+            <li>💻 <strong>Fun Time Extension</strong> — a playful Chrome extension</li>
+            <li>🎮 <strong>Geometry Dash Mod</strong> — DemonLegal+</li>
+            <li>🤖 <strong>Shadow Milk Bot</strong> — my Discord bot</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="#">Contact</a>
+        <div class="dropdown-content">
+          <h2>Get in Touch</h2>
+          <p>You can reach me via GitHub or my projects’ discussion pages.<br><br>
+          <a href="https://github.com/wtfiu" style="color:#00ffff;text-decoration:none;">github.com/wtfiu</a></p>
+        </div>
+      </div>
+    </div>
+  </nav>
 </body>
 </html>
