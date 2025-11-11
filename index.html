@@ -74,6 +74,8 @@
     }
 
     .cursor {
+      left: 0;
+      top: 0;
       width: 10px;
       height: 10px;
       border-radius: 50%;
@@ -136,11 +138,14 @@
   </main>
 
   <script>
-    // cool cursor effect
+    // cooler cursor effect
     const cursor = document.querySelector('.cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+    const rect = cursor.getBoundingClientRect();
+    if (cursor) {
+      document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate(${e.clientX - rect.width / 2}px, ${e.clientY - rect.height / 2}px)`;
+      });
+    }
 
     // subtle flicker
     setInterval(() => {
